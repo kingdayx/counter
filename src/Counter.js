@@ -8,7 +8,7 @@ import './App.css';
             <h1 className="count">I am a Counter!</h1>
             <p className="count1">Count:{props.count} </p>
            <div  className="count1">
-            <button>Increment</button>
+            <button onClick={props.onIncrementClick} >Increment</button>
             </div>
         </div>
     );
@@ -21,4 +21,15 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps)(Counter);
+const mapDispatchToProps = (dispatch)=>{
+    
+    return {
+        onIncrementClick: ()=>{
+            const action = {type: 'INCREMENT'};
+            dispatch(action);
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
